@@ -1,0 +1,35 @@
+*{
+    margin: 0px auto;
+    padding: 0px auto;
+}
+
+body{
+    margin-top: 0px;
+    background-color: #271f3b;
+}
+
+.menu{
+    height: 150px;
+    width: 100%;
+    background-color: #fff;
+    text-align: justify;
+    /*background-color: #221c33;*/
+}
+
+#row_0, #row_1{
+    height: 130px;
+    width: 200px;
+    cursor: pointer;
+}
+
+#row_0{
+    margin-top: 100px;
+}
+
+#row_1{
+    margin-top: 30px;    
+}
+
+.botoes_row0, .botoes_row1{    
+    text-align: center;
+}
