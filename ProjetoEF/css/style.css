@@ -3,33 +3,64 @@
     padding: 0px auto;
 }
 
-body{
-    margin-top: 0px;
-    background-color: #271f3b;
+@keyframes treme {
+    0% {margin-left: 0;}
+    25% {margin-left: 5px;}
+    50% {margin-left: 0;}
+    75% {margin-left: -2px;}
+    100% {margin-left: 0;}
+  }
+
+.row_1{
+    margin-top: 10px;    
 }
 
-.menu{
-    height: 150px;
-    width: 100%;
-    background-color: #fff;
-    text-align: justify;
-    /*background-color: #221c33;*/
-}
-
-#row_0, #row_1{
+.row_0, .row_1{
+    background-color: #3299fe;    
+    color: white;
+    border-radius: 15px ;
+    border: unset;
+    outline: none;
     height: 130px;
     width: 200px;
     cursor: pointer;
+    font-family: 'Helvetica';
+    font-size: 18px;     
 }
 
-#row_0{
+.botoes_row0{
     margin-top: 100px;
 }
 
-#row_1{
-    margin-top: 30px;    
+.botoes_row0, .botoes_row1{    
+    text-align: center;      
 }
 
-.botoes_row0, .botoes_row1{    
-    text-align: center;
+#btn_superior_direto, #btn_usuarios,
+#btn_compra, #btn_controle{    
+    margin-right: 6px;
+}
+
+.image_logo:hover{
+    animation: treme 0.18s;
+    animation-iteration-count: 2;
+}
+
+.row_0, .row_1 {
+	overflow: hidden;
+}
+
+.row_0, .row_1 {
+	max-width: 80%;
+	-moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.row_0:hover, .row_1:hover {
+	-moz-transform: scale(1.05);
+	-webkit-transform: scale(1.05);
+	transform: scale(1.05);
+    background-color: white;
+    color: #271f3b;
 }
