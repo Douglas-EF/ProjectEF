@@ -210,7 +210,7 @@ switch ($cor):
         break;
 
     default:
-        echo "Bem estranho sua cor!";  
+        echo "Bem estranho sua cor!";
 
 endswitch;
 
@@ -220,7 +220,7 @@ echo "<hr>";
 //echo ++$numero_teste;
 //echo $numero_teste++;
 //echo $numero_teste;
-echo "<br>";
+//echo "<br>";
 //echo --$numero_teste;
 //echo $numero_teste--;
 echo $numero_teste;
@@ -229,14 +229,51 @@ $var0 = 45;
 $var1 = 55;
 
 $var0 += $var1; // Equivalente a ($var0 = $var0 + $var1) -- %(para capturar o reto da divisão)
-
+echo "<hr>";
 //OPERADORES DE COMPARAÇÃO
 /*
 10 == 10 - Igual
 10 === 10 - Identico
 10 !== 10 - Não identico
-
-
+10 <> 10 - Diferente
+10 <=> 10 - Spaceship (lado direito < retorna 1, dois lados == return 0, se lado esquerdo for menor return -1)
 */
 
+//OPERADORS LÓGICOS
+$nome_djs = "Douglas";
+$idade_djs = 18;
 
+// xor - Ou é um, ou é outro
+// ! - Negação de uma determinada expressão
+if (($nome_djs === "Douglas") and ($idade_djs >= 18)) :
+    echo "<script> alert ('Olá, $nome_djs acababos de constatar que você possui $idade_djs anos!');</script>";
+else :
+endif;
+
+// WHILE & DO WHILE
+$cont = 1;
+while ($cont <= 10) :
+    echo "Contador é $cont <br>";
+    $cont++;
+endwhile;
+
+$cont = 1;
+echo "<hr>";
+
+do {
+    echo "Contador é $cont <br>";
+    $cont++;
+} while ($cont <= 10);
+echo "<hr>";
+
+// FOR & FOREACH
+for ($contador = 1; $contador <= 10; $contador++) :
+    echo "Contador é: $contador <br>";
+endfor;
+
+echo "<hr>";
+$cores = array("Verde", "Vermelho", "Azul", "Rosa");
+
+foreach($cores as $indice => $val_cor):
+    echo $indice." - ".$val_cor."<br>";
+endforeach;
