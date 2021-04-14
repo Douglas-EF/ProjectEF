@@ -1,4 +1,5 @@
 <?php
+/*
 $nome = "123";
 
 //var_dump($nome);
@@ -30,10 +31,10 @@ $num_3 = 32;
 
 function soma()
 {
-    /*global$num_1;
+    global$num_1;
     global$num_2;
     global$num_3;        
-    echo $num_1 + $num_2 + $num_3;*/
+    echo $num_1 + $num_2 + $num_3;
 
     echo "<hr>";
     echo $GLOBALS['num_1'] + $GLOBALS['num_2'] + $GLOBALS['num_3'];
@@ -231,13 +232,13 @@ $var1 = 55;
 $var0 += $var1; // Equivalente a ($var0 = $var0 + $var1) -- %(para capturar o reto da divisão)
 echo "<hr>";
 //OPERADORES DE COMPARAÇÃO
-/*
+
 10 == 10 - Igual
 10 === 10 - Identico
 10 !== 10 - Não identico
 10 <> 10 - Diferente
 10 <=> 10 - Spaceship (lado direito < retorna 1, dois lados == return 0, se lado esquerdo for menor return -1)
-*/
+
 
 //OPERADORS LÓGICOS
 $nome_djs = "Douglas";
@@ -246,7 +247,7 @@ $idade_djs = 18;
 // xor - Ou é um, ou é outro
 // ! - Negação de uma determinada expressão
 if (($nome_djs === "Douglas") and ($idade_djs >= 18)) :
-    echo "<script> alert ('Olá, $nome_djs acababos de constatar que você possui $idade_djs anos!');</script>";
+ //   echo "<script> alert ('Olá, $nome_djs acababos de constatar que você possui $idade_djs anos!');</script>";
 else :
 endif;
 
@@ -274,6 +275,110 @@ endfor;
 echo "<hr>";
 $cores = array("Verde", "Vermelho", "Azul", "Rosa");
 
-foreach($cores as $indice => $val_cor):
-    echo $indice." - ".$val_cor."<br>";
+foreach ($cores as $indice => $val_cor) :
+    echo $indice . " - " . $val_cor . "<br>";
 endforeach;
+echo "<hr>";
+
+for ($contad = 0; $contad <= 10; $contad++) :
+    echo "8 x $contad = ".($contad*8). "<br>";
+endfor;
+echo "<hr>";
+
+//FUNÇÕES PARA STRINGS
+$nome_fs = "douglas jeronimo da silva";
+echo strtoupper($nome_fs);
+echo "<br>";
+$nome_fs = "DOUGLAS JERONIMO DA SILVA";
+echo strtolower($nome_fs);
+echo "<hr>";
+
+echo substr($nome_fs, 0, 7);
+echo "<hr>";
+
+$novo_nome_fs = str_pad($nome_fs, 35, "POLICARPO ", STR_PAD_LEFT); // Para atribuir novas caractres a String
+echo $novo_nome_fs;
+echo "<br>";
+echo str_repeat($nome_fs, 5); //Repetir uma String
+echo "<br>";
+echo strlen($novo_nome_fs); //Conta os caractes de uma String
+echo "<br>";
+
+echo str_replace("POLICARPO ", "", $novo_nome_fs);
+echo "<br>";
+
+echo strpos($novo_nome_fs, "SILVA"); // Para saber a posição de algo em uma string
+echo "<hr>";
+*
+// FUNÇÕES PARA NÚMEROS
+$preco = 1499.99;
+echo number_format($preco, 2, ",", "."); // Formatar algum número
+echo "<br>";
+echo round(3.492432123); // Aredondar um número
+echo "<br>";
+echo ceil(5.1); // Aredonda para cima
+echo "<br>";
+echo floor(5.99); // Aredonda para baixo
+echo "<br>";
+echo rand(1, 100); // Gera valores aleatórios
+echo "<hr>";
+*
+// CRIANDO FUNÇÕES
+function exibirNome($nome_informado)
+{
+    echo "Meu nome é $nome_informado";
+}
+
+exibirNome("Douglas Jerônimo da Silva");
+echo "<hr>";
+
+function calcularMedia($nome_informado, $nota1, $nota2, $nota3, $nota4)
+{
+    $soma_calc_media = ($nota1 + $nota2 + $nota3 + $nota4) / 4;
+    $mesagem_func = "$nome_informado, sua média destas 4 notas informadas são: $soma_calc_media, e você foi";
+    
+    if($soma_calc_media >= 60):
+        echo $mesagem_func." aprovado!";
+    else:
+        echo $mesagem_func." reprovado!";
+    endif;
+}
+
+calcularMedia("Douglas", 68, 65, 90, 100);
+echo "<hr>";
+
+//VARIAVEIS SUPERGLOBAIS 
+/*
+    $_POST
+    $_GET
+    $_FILES
+    $_ENV
+    $_REQUEST
+    $_COOKIE
+    $_SESSION
+
+
+echo $_SERVER['PHP_SELF'] . "<br>"; // Nome do arquivo do Script que esta sendo executado
+echo $_SERVER['SERVER_NAME'] . "<br>"; // Nome do HOST do servidor
+echo $_SERVER['SCRIPT_FILENAME'] . "<br>"; // Caminho absoluto do Script
+echo $_SERVER['DOCUMENT_ROOT'] . "<br>"; // Retorna o diretório raiz do Script
+echo $_SERVER['SERVER_PORT'] . "<br>"; // Retorna a porta do servidor
+echo $_SERVER['REMOTE_ADDR'] . "<br>"; // Retorna o IP de onde o usuário esta acessando a pagina
+*/
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <form action="dados.php" method="GET"><br>
+        Nome: <input type="text" name="nome" required><br><br>
+        Email: <input type="email" name="email" required><br><br>
+
+        <button type="submit">ENVIAR</button>
+    </form>
+
+    <a href="dados.php?idade=25&sobrenome=Jerônimo">Enviar Dados</a>
+
+</body>
+
+</html>
