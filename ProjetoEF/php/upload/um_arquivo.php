@@ -13,32 +13,27 @@
     <?php
     if (isset($_POST['enviar_formulario'])) :
         $formatosPermitidos = array("png", "jpeg", "jpg", "gif");
-        $quantidadeArquivos = count($_FILES['arquivo']['name']); //Pegamos a quantidade de arquivos selecionados
-        $contador = 0; //Inicializamos o contador com o valor 0
-
-        while ($contador < $quantidadeArquivos) :                    
-        $extensao = pathinfo($_FILES['arquivo']['name'][$contador], PATHINFO_EXTENSION);
-        //echo "O formato deste arquivo selecionado(" . $extensao . ") não é suportado!" . "<br><br>";
+        $extensao = pathinfo($_FILES['arquivo']['name'], PATHINFO_EXTENSION);
+        echo "O formato deste arquivo selecionado(" . $extensao . ") não é suportado!" . "<br><br>";
 
         if (in_array($extensao, $formatosPermitidos)) :
             $pasta = "arquivos/";
-            $temporario = $_FILES['arquivo']['tmp_name'][$contador];
+            $temporario = $_FILES['arquivo']['tmp_name'];
             $novo_nome = uniqid() . ".$extensao";
 
             if (move_uploaded_file($temporario, $pasta . $novo_nome)) :
-                Echo "Upload feito com sucesso para $pasta.$novo_nome!<br>";
+                $mensagem = "Upload feito com sucesso!";
             else :
-                Echo "Erro, ao enviar $temporario!";
+                $mensagem = "Erro, não foi possivel realizar o upload!";
             endif;
 
         else :
-           echo "$extensao não é permitido!";
+            $mensagem = "Formato Inválido!";
 
         endif;
-        $contador++;
 
-        //echo "<script>alert ('$mensagem');</script>";
-    endwhile;
+        echo "<script>alert ('$mensagem');</script>";
+
     //header('Location:index.php');
     endif;
     ?>
@@ -47,8 +42,7 @@
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
         <!-- enctype é obrigatório para enviar arquivos -->
 
-        <input type="file" name="arquivo" multiple><br><br>
-        <!--Add multiple para permitir add + de 1 arquivo-->
+        <input type="file" name="arquivo"><br><br>
         <button type="submit" name="enviar_formulario">ENVIAR</button>
 
     </form>
