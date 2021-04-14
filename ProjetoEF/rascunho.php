@@ -364,20 +364,115 @@ echo $_SERVER['SCRIPT_FILENAME'] . "<br>"; // Caminho absoluto do Script
 echo $_SERVER['DOCUMENT_ROOT'] . "<br>"; // Retorna o diretório raiz do Script
 echo $_SERVER['SERVER_PORT'] . "<br>"; // Retorna a porta do servidor
 echo $_SERVER['REMOTE_ADDR'] . "<br>"; // Retorna o IP de onde o usuário esta acessando a pagina
-*/
-?>
-<!DOCTYPE html>
-<html lang="en">
 
 <body>
-    <form action="dados.php" method="GET"><br>
+<!DOCTYPE html>
+<html lang="en">
+    <form action="dados.php" method="POST"><br>
         Nome: <input type="text" name="nome" required><br><br>
         Email: <input type="email" name="email" required><br><br>
 
         <button type="submit">ENVIAR</button>
     </form>
 
-    <a href="dados.php?idade=25&sobrenome=Jerônimo">Enviar Dados</a>
+    <!--
+        <a href="dados.php?idade=25&sobrenome=Jerônimo">Enviar Dados</a> 
+        Passando dados utilizando o GET através de um Link
+    -->
+
+</body>
+
+</html>
+
+
+if (isset($_POST['enviar_formulario'])) :
+    //Criada a array de Erros
+    $erros = array();
+    //Validações
+    if (!$idade = filter_input(INPUT_POST, 'idade', FILTER_VALIDATE_INT)) :
+        //echo "<script> alert ('Sua idade é um inteiro');</script>";
+        $erros[] = "Sua idade precisa ser um número inteiro";
+    endif;
+
+    if (!$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)) :
+        $erros[] = "Email inválido";
+    endif;
+
+    if (!$email = filter_input(INPUT_POST, 'peso', FILTER_VALIDATE_FLOAT)) :
+        $erros[] = "Peso precisa ser um float";
+    endif;
+
+    if (!$email = filter_input(INPUT_POST, 'ip', FILTER_VALIDATE_IP)) :
+        $erros[] = "IP inválido";
+    endif;
+
+    if (!$email = filter_input(INPUT_POST, 'url', FILTER_VALIDATE_URL)) :
+        $erros[] = "URL inválido";
+    endif;
+
+    //Exibindo Mensagens de Erro
+    if (!empty($erros)) :
+        foreach ($erros as $erro) :
+            echo "<li> $erro </li>";
+        endforeach;
+
+    else :
+        echo "<script> alert ('Parabéns, todos os dados informados estão corretos!');</script>";
+
+    endif;
+
+endif;
+*/
+
+if (isset($_POST['enviar_formulario'])) :
+    //Criada a array de Erros
+    $erros = array();
+
+    //Sanitize
+    $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
+    
+
+    $idade = filter_input(INPUT_POST, 'idade', FILTER_SANITIZE_NUMBER_INT);
+    if(!filter_var($idade, FILTER_VALIDATE_INT)):
+        $erros[] = "Idade precisa ser um inteiro!";
+    endif; 
+
+    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)):
+        $erros[] = "Email inválido!";
+    endif; 
+
+    $url = filter_input(INPUT_POST, 'url', FILTER_SANITIZE_URL);
+    if(!filter_var($url, FILTER_VALIDATE_EMAIL)):
+        $erros[] = "URL  inválido!";
+    endif; 
+
+    //Exibindo Mensagens de Erro
+    if (!empty($erros)) :
+        foreach ($erros as $erro) :
+            echo "<li> $erro </li>";
+        endforeach;
+
+    else :
+        //echo "<script> alert ('Parabéns, todos os dados informados estão corretos!');</script>";
+        echo "<br>"."Parabéns, todos os dados informados estão corretos!"."<br>";
+    endif;
+
+endif;
+
+?>
+<!-- FILTROS DE VALIDAÇÃO -->
+<!DOCTYPE html>
+<html lang="en">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST"><br>
+    Nome: <input type="text" name="nome"><br><br>
+    Idade: <input type="text" name="idade"><br><br>
+    Email: <input type="text" name="email"><br><br>
+    IP: <input type="text" name="ip"><br><br>
+    URL: <input type="text" name="url"><br><br>
+
+    <button type="submit" name="enviar_formulario">ENVIAR</button>
+</form>
 
 </body>
 
