@@ -14,7 +14,7 @@
     if (isset($_POST['enviar_formulario'])) :
         $formatosPermitidos = array("png", "jpeg", "jpg", "gif");
         $extensao = pathinfo($_FILES['arquivo']['name'], PATHINFO_EXTENSION);
-        echo $extensao . "<br><br>";
+        echo "O formato deste arquivo selecionado(".$extensao.") não é suportado!" . "<br><br>";
 
         if (in_array($extensao, $formatosPermitidos)) :
             $pasta = "arquivos/";
@@ -29,10 +29,13 @@
 
         else :
             $mensagem = "Formato Inválido!";
+            echo "<script>alert ('$mensagem');</script>";asdf
+            
         endif;
-
-        echo $mensagem;
         
+        
+
+        //header('Location:index.php');
     endif;
     ?>
 
