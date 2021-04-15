@@ -16,29 +16,29 @@
         $quantidadeArquivos = count($_FILES['arquivo']['name']); //Pegamos a quantidade de arquivos selecionados
         $contador = 0; //Inicializamos o contador com o valor 0
 
-        while ($contador < $quantidadeArquivos) :                    
-        $extensao = pathinfo($_FILES['arquivo']['name'][$contador], PATHINFO_EXTENSION);
-        //echo "O formato deste arquivo selecionado(" . $extensao . ") não é suportado!" . "<br><br>";
+        while ($contador < $quantidadeArquivos) :
+            $extensao = pathinfo($_FILES['arquivo']['name'][$contador], PATHINFO_EXTENSION);
+            //echo "O formato deste arquivo selecionado(" . $extensao . ") não é suportado!" . "<br><br>";
 
-        if (in_array($extensao, $formatosPermitidos)) :
-            $pasta = "arquivos/";
-            $temporario = $_FILES['arquivo']['tmp_name'][$contador];
-            $novo_nome = uniqid() . ".$extensao";
+            if (in_array($extensao, $formatosPermitidos)) :
+                $pasta = "arquivos/";
+                $temporario = $_FILES['arquivo']['tmp_name'][$contador];
+                $novo_nome = uniqid() . ".$extensao";
 
-            if (move_uploaded_file($temporario, $pasta . $novo_nome)) :
-                Echo "Upload feito com sucesso para $pasta.$novo_nome!<br>";
+                if (move_uploaded_file($temporario, $pasta . $novo_nome)) :
+                    echo "<script>alert ('Upload feito com sucesso para $pasta.$novo_nome!');</script>";
+                else :
+                    echo "<script>alert ('Erro, ao enviar $temporario!');</script>";
+                endif;
+
             else :
-                Echo "Erro, ao enviar $temporario!";
+                echo "<script>alert ('$extensao não é permitido!');</script>";
+
             endif;
-
-        else :
-           echo "$extensao não é permitido!";
-
-        endif;
-        $contador++;
+            $contador++;
 
         //echo "<script>alert ('$mensagem');</script>";
-    endwhile;
+        endwhile;
     //header('Location:index.php');
     endif;
     ?>
@@ -47,8 +47,8 @@
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
         <!-- enctype é obrigatório para enviar arquivos -->
 
-        <input type="file" name="arquivo" multiple><br><br>
-        <!--Add multiple para permitir add + de 1 arquivo-->
+        <input type="file" name="arquivo[]" multiple><br><br>
+        <!--Add multiple para permitir add + de 1 arquivo AND como vamos selecionar mais de um arquivos osses arquivos vão como Array-->
         <button type="submit" name="enviar_formulario">ENVIAR</button>
 
     </form>
