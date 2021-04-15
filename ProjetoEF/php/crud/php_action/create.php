@@ -16,7 +16,7 @@ if(isset($_POST['btn_cadastrar'])):
         header('Location: ../index.php?');
     else:
         $_SESSION['mensagem'] = "Falha ao cadastrar cliente!";
-        header('Location: .../index.php?');
+        header('Location: ../index.php?');
     endif;
 
 endif;
