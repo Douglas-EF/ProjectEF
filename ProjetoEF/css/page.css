@@ -14,3 +14,9 @@ body{
     background-color: #fff;
     /*background-color: #221c33;*/
 }
+
+.footer{
+    height: 50px;
+    width: 100%;
+    background-color: #282a2b;
+}

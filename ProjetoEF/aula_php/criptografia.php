@@ -1,6 +1,6 @@
 <?php
 
-$senha = "vero208v";
+$senha = "teste123";
 
 $nova_senha = base64_encode($senha);
 echo $nova_senha."<br>";

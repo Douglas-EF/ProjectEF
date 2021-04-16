@@ -4,10 +4,20 @@ session_start();
 //Conexão
 require_once 'conexao.php';
 
+//Função para tratar os dados inseridos contra Mysql Injector and Cross Site Scripting
+function clearInput($input){
+    global $connect;
+    // SQL
+    $var = mysqli_escape_string($connect, $input);
+    // XSS
+    $var = htmlspecialchars($var);
+    return $var;
+}
+
 if(isset($_POST['btn_cadastrar'])):
-    $nome = mysqli_escape_string($connect, $_POST['nome']);
-    $email = mysqli_escape_string($connect, $_POST['email']);
-    $idade = mysqli_escape_string($connect, $_POST['idade']);
+    $nome = clearInput($_POST['nome']);
+    $email = clearInput($_POST['email']);
+    $idade = clearInput($_POST['idade']);
 
     $sql = "INSERT INTO cliente (nome_cli, email_cli, idade_cli) VALUES ('$nome', '$email', $idade)";
 
