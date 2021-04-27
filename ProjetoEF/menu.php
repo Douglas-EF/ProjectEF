@@ -12,10 +12,7 @@ include_once 'php/includes/header.php';
     include_once 'php/includes/top.php';
     ?>
 
-
-
     <div class="botoes_row0">
-
         <button class="row_0" id="btn_superior_direto" onclick="window.location.href = 'superior_direto_prod.php'"> <img src="img/superior_direto.png" class="img"> <br> SUPERIOR&nbsp;DIRETO</button>
         <button class="row_0" id="btn_usuarios" onclick="window.location.href = 'usuarios.php'"> <img src="img/users.png"> <br>USUÁRIOS</button>
         <button class="row_0" id="btn_estoque" onclick="window.location.href = 'estoque.php'"> <img src="img/stock.png"> <br>ESTOQUE</button>

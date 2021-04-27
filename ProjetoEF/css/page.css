@@ -11,8 +11,7 @@ body{
 .header{
     height: 150px;
     width: 100%;
-    background-color: #fff;
-    /*background-color: #221c33;*/
+    background-color: white;
 }
 
 .footer{

@@ -16,6 +16,7 @@ include_once 'php/includes/header.php';
 
     <div class="row">
         <div class="col s12 m6 push-m3">
+            <a href="sub_compra/new_comp.php" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
             <table class="striped">
                 <thead>
                     <tr>
