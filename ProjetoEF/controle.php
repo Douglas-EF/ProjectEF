@@ -36,11 +36,10 @@ include_once 'php/includes/header.php';
 
                     <tbody>
                         <tr>
-                            <td><?php echo $dados['nome_listControl'];?></td>
-                            <td><?php echo $dados['data_inicial_listControl'];?></td>
-                            <td><?php echo $dados['data_final_listControl'];?></td>
+                            <td><?php echo $dados['nome_listControl']; ?></td>
+                            <td><?php echo $dados['data_inicial_listControl']; ?></td>
+                            <td><?php echo $dados['data_final_listControl']; ?></td>
                         </tr>
-
                     </tbody>
 
                 <?php
@@ -50,8 +49,6 @@ include_once 'php/includes/header.php';
         </div>
     </div>
 
-</body>
-
-<?php
-include_once 'php/includes/footer.php';
-?>
+    <?php
+    include_once 'php/includes/footer.php';
+    ?>

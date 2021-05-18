@@ -41,6 +41,11 @@
     margin-right: 6px;
 }
 
+.image_logo{
+    outline: none;
+
+}
+
 .image_logo:hover{
     animation: treme 0.18s;
     animation-iteration-count: 2;

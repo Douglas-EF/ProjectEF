@@ -16,7 +16,7 @@ include_once 'php/includes/header.php';
 
     <div class="row">
         <div class="col s12 m6 push-m3">
-            <a href="sub_compra/new_comp.php" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+            <a href="compra_new.php" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">add</i></a>
             <table class="striped">
                 <thead>
                     <tr>
@@ -39,6 +39,8 @@ include_once 'php/includes/header.php';
                             <td><?php echo $dados['nome_list']; ?></td>
                             <td><?php echo $dados['data_inicial_list']; ?></td>
                             <td><?php echo $dados['data_final_list']; ?></td>
+                            <td><a href="compra_edit.php?id=<?php echo $dados['id_list'] ?>" class="btn-floating waves-effect waves-light green"><i class="material-icons">edit</i></a></td>
+                            <td><a href="compra.php?id=<?php echo $dados['id_list'] ?>" class="btn-floating red modal-trigger waves-effect waves-light"><i class="material-icons">delete</i></a></td>
                         </tr>
 
                     </tbody>
